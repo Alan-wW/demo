@@ -1,0 +1,16 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: exam
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Xb005869@
+    url: jdbc:mysql://localhost:3306/exam?useUnicode=true&characterEncoding=gbk&useSSL=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.entity
+  configuration:
+    map-underscore-to-camel-case: true

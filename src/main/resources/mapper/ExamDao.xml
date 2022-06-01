@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ExamDao">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Exam">
+    <id column="exam_id" jdbcType="INTEGER" property="id" />
+    <result column="exam_name" jdbcType="VARCHAR" property="name" />
+    <result column="exam_address" jdbcType="VARCHAR" property="address" />
+    <result column="exam_related" jdbcType="VARCHAR" property="related" />
+    <result column="exam_sexy" jdbcType="CHAR" property="sexy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    exam.id as exam_id, exam.`name` as `exam_name`, exam.address as exam_address, exam.related as exam_related, 
+    exam.sexy as exam_sexy
+  </sql>
+  <select id="selectByPrimaryName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exam exam
+    where exam.name = #{name,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exam
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.demo.entity.Exam" useGeneratedKeys="true">
+    insert into exam (`name`, address, related, 
+      sexy)
+    values (#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{related,jdbcType=VARCHAR}, 
+      #{sexy,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.demo.entity.Exam" useGeneratedKeys="true">
+    insert into exam
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="related != null">
+        related,
+      </if>
+      <if test="sexy != null">
+        sexy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="related != null">
+        #{related,jdbcType=VARCHAR},
+      </if>
+      <if test="sexy != null">
+        #{sexy,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Exam">
+    update exam
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="related != null">
+        related = #{related,jdbcType=VARCHAR},
+      </if>
+      <if test="sexy != null">
+        sexy = #{sexy,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Exam">
+    update exam
+    set `name` = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      related = #{related,jdbcType=VARCHAR},
+      sexy = #{sexy,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
