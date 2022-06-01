@@ -3,6 +3,8 @@ package com.example.demo.mapper;
 import com.example.demo.entity.Exam;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface ExamDao {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +18,6 @@ public interface ExamDao {
     int updateByPrimaryKeySelective(Exam record);
 
     int updateByPrimaryKey(Exam record);
+
+    List<Exam> selectAll();
 }

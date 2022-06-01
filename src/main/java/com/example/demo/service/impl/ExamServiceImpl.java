@@ -6,6 +6,8 @@ import com.example.demo.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: 邢彬
  * @Date: 2022/06/01/08:52
@@ -24,5 +26,15 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public int insertSelective(Exam record) {
         return examDao.insertSelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(Exam record) {
+        return examDao.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public List<Exam> selectAll() {
+        return examDao.selectAll();
     }
 }

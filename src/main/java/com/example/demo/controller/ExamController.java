@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @Author: 邢彬
  * @Date: 2022/06/01/08:51
@@ -25,5 +27,13 @@ public class ExamController {
     @PostMapping("/insert")
     public int insert(Exam exam){
         return service.insertSelective(exam);
+    }
+    @GetMapping("/getall")
+    public List<Exam> getList(){
+        return service.selectAll();
+    }
+    @PostMapping("/update")
+    public int update(Exam exam){
+        return service.updateByPrimaryKeySelective(exam);
     }
 }
